@@ -1,6 +1,8 @@
 # Spam-program
 Spam program using pyautogui library
 
+![](screenImage.png)
+
 <h1>Requirements:</h1>
 
 ##
