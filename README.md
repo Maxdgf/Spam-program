@@ -38,3 +38,6 @@ A console application for spam.
 
 ##
     pip install keyboard
+
+##
+    pip install fontstyle
