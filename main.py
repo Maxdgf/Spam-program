@@ -10,7 +10,8 @@ class MyApp():
     def __init__(self):
         super().__init__()
 
-        self.Fred = Fore.RED
+        #color variables
+        self.Fred = Fore.RED  
         self.Fgreen = Fore.GREEN
         self.Fcyan = Fore.CYAN
         self.Fblue = Fore.BLUE
@@ -88,7 +89,7 @@ class MyApp():
                 self.amount = int(input(self.AmountCommandStyle))
                 #if self.amount == 0:
                     #self.amount = 50
-                pyautogui.click(x=100, y=100)
+                pyautogui.click(x=100, y=100) #clicking on another area to avoid writing text to the console
                 pyautogui.mouseUp()
                 for a in range(self.amount):
                     pass
@@ -206,7 +207,7 @@ class MyApp():
                     self.ISpamField = "I am a Spam Monster)"
                 print(self.Fyellow + "WARNING! action was created, process started." + self.Freset)
                 print(self.Fred + "Keyboard buttons:\n j - start spam\n k - stop spam\n n - exit" + self.Freset)
-                pyautogui.click(x=100, y=100)
+                pyautogui.click(x=100, y=100) #clicking on another area to avoid writing text to the console
                 pyautogui.mouseUp()
                 while True:
                     if keyboard.is_pressed("j"):
