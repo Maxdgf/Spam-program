@@ -10,8 +10,7 @@ class MyApp():
     def __init__(self):
         super().__init__()
 
-        #color variables
-        self.Fred = Fore.RED  
+        self.Fred = Fore.RED
         self.Fgreen = Fore.GREEN
         self.Fcyan = Fore.CYAN
         self.Fblue = Fore.BLUE
@@ -69,6 +68,16 @@ class MyApp():
         print(self.commandsDescription)
         print("")
 
+    def destroy_action(self):
+        print(self.Fred + "Your action was destroyed. I am teleporting you to main screen after 5 seconds." + self.Freset)
+        self.timeData = 0
+        for b in range(5, 0, -1):
+            time.sleep(1)
+            self.timeData += 1
+            print(self.Fred + f"{b} seconds" + self.Freset)
+            if self.timeData == 5:
+                self.mainScreen()
+
     def working_process(self):
         self.strCommandText = "Enter command> "
         self.strCommandStyle = fontstyle.apply(self.strCommandText, "bold/red")
@@ -83,13 +92,15 @@ class MyApp():
                 self.MessageCommandText = "Enter spam message> "
                 self.MessageCommandTextStyle = fontstyle.apply(self.MessageCommandText, "bold/red")
                 self.messageCommandField = input(self.MessageCommandTextStyle)
+                if self.messageCommandField == "destroy":
+                    self.destroy_action()
                 print(self.Fred + "Nice! please, enter me count of messages." + self.Freset)
                 self.enterAmountText = "Enter count of spam messages> "
                 self.AmountCommandStyle = fontstyle.apply(self.enterAmountText, "bold/red")
                 self.amount = int(input(self.AmountCommandStyle))
                 #if self.amount == 0:
                     #self.amount = 50
-                pyautogui.click(x=100, y=100) #clicking on another area to avoid writing text to the console
+                pyautogui.click(x=100, y=100)
                 pyautogui.mouseUp()
                 for a in range(self.amount):
                     pass
@@ -112,20 +123,15 @@ class MyApp():
             except:
                 print(self.Bred + self.Fwhite + "Operation failed! Please, check your values and try again." + self.Freset + self.Breset + self.commandField)         
         elif self.commandField == "destroy":
-            print(self.Fred + "Your action was destroyed. I am teleporting you to main screen after 5 seconds." + self.Freset)
-            self.timeData = 0
-            for b in range(5, 0, -1):
-                time.sleep(1)
-                self.timeData += 1
-                print(self.Fred + f"{b} seconds" + self.Freset)
-                if self.timeData == 5:
-                    self.mainScreen()
+            self.destroy_action()
         elif self.commandField == "i":
             try:
                 print(self.Fred + "Ok, please, enter me message for spam." + self.Freset)
                 self.MessageCommandText = "Enter spam message> "
                 self.MessageCommandTextStyle = fontstyle.apply(self.MessageCommandText, "bold/red")
                 self.messageCommandField = input(self.MessageCommandTextStyle)
+                if self.messageCommandField == "destroy":
+                    self.destroy_action()
                 print(self.Fyellow + "WARNING: Be careful! This is a infinity spam! Spam will be started after: " + self.Freset)
                 self.timing = 0
                 if len(self.messageCommandField) == 0:
@@ -160,6 +166,8 @@ class MyApp():
                 self.ClickerCommandText = "Enter answer> "
                 self.ClickerCommandTextStyle = fontstyle.apply(self.ClickerCommandText, "bold/red")
                 self.AnswerField = input(self.ClickerCommandTextStyle)
+                if self.AnswerField == "destroy":
+                    self.destroy_action()
                 if len(self.AnswerField) == 0:
                     print(self.Fred + "Why didn't you say anything?)" + self.Freset)
                 if self.AnswerField == "yes":
@@ -203,11 +211,13 @@ class MyApp():
                 self.ISpamCommandText = "Enter spam message> "
                 self.ISpamCommandTextStyle = fontstyle.apply(self.ISpamCommandText, "bold/red")
                 self.ISpamField = input(self.ISpamCommandTextStyle)
+                if self.ISpamField == "destroy":
+                    self.destroy_action()
                 if len(self.ISpamField) == 0:
                     self.ISpamField = "I am a Spam Monster)"
                 print(self.Fyellow + "WARNING! action was created, process started." + self.Freset)
                 print(self.Fred + "Keyboard buttons:\n j - start spam\n k - stop spam\n n - exit" + self.Freset)
-                pyautogui.click(x=100, y=100) #clicking on another area to avoid writing text to the console
+                pyautogui.click(x=100, y=100)
                 pyautogui.mouseUp()
                 while True:
                     if keyboard.is_pressed("j"):
