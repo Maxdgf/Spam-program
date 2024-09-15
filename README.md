@@ -7,7 +7,7 @@ A console application for spam.
 
 <h2>Commands:</h2>
 
-w - spamming a given text with a certain set amount
+<b>w</b> - spamming a given text with a certain set amount
 <br>
 return - return to main screen
 <br>
