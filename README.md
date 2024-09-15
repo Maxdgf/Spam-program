@@ -9,21 +9,21 @@ A console application for spam.
 
 <b>w</b> - spamming a given text with a certain set amount
 <br>
-return - return to main screen
+<b>return</b> - return to main screen
 <br>
-q (keybord button) - stop spam (applicable to command 'i')
+<b>q (keybord button)</b> - stop spam (applicable to command 'i')
 <br>
-i - infinity spam
+<b>i</b> - infinity spam
 <br>
-destroy - destroy selected action
+<b>destroy</b> - destroy selected action
 <br>
-autoclicker - cursor autoclicker
+<b>autoclicker</b> - cursor autoclicker
 <br>
-z (keyboard button) - stop autoclicker (applicable to command 'autoclicker')
+<b>z (keyboard button)</b> - stop autoclicker (applicable to command 'autoclicker')
 <br>
-controlled_autoclicker - an autoclicker that is controlled by keystrokes
+<b>controlled_autoclicker</b> - an autoclicker that is controlled by keystrokes
 <br>
-ic - controlled infinity spam
+<b>ic</b> - controlled infinity spam
 
 <h1>Requirements:</h1>
 
