@@ -1,5 +1,5 @@
 # Spam-program
-Spam program using pyautogui library
+Spam program using pyautogui library. The application interacts with the computer's input tools. In order to start spam, you need to select a command and put the cursor in the chat input field or somewhere else.
 
 ![](screenImage.png)
 
