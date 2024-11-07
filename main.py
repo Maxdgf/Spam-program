@@ -5,6 +5,8 @@ import pyfiglet
 import fontstyle
 import time
 import keyboard
+import threading
+import os
 
 class MyApp():
     def __init__(self):
@@ -53,18 +55,18 @@ class MyApp():
         self.textCommandsDescription = "|Commands:|"
         self.textCommandDescriptionStyle = fontstyle.apply(self.textCommandsDescription, 'bold/red')
         self.botDescription = self.Fcyan + "the connection with the telegram bot has been established" + self.Freset
-        self.desc1 = self.Fmagenta + "!applicable to(command - i)!" + self.Freset + self.Fred
-        self.desc2 = self.Fmagenta + "!applicable to(command - autoclicker)!" + self.Freset + self.Fred
         self.w = self.BOLD + "w" + self.END + self.Fred
         self.return1 = self.BOLD + "return" + self.END + self.Fred
-        self.q = self.BOLD + "q" + self.END + self.Fred
+        self.q = self.Fred + self.BOLD + "Q" + self.END + self.Fred
         self.i = self.BOLD + "i" + self.END + self.Fred
         self.destroy = self.BOLD + "destroy" + self.END + self.Fred
         self.autoclicker = self.BOLD + "autoclicker" + self.END + self.Fred
-        self.z = self.BOLD + "z" + self.END + self.Fred
+        self.z = self.Fred + self.BOLD + "Z" + self.END + self.Fred
         self.controlled_autoclicker = self.BOLD + "controlled_autoclicker" + self.END + self.Fred
         self.ic = self.BOLD + "ic" + self.END + self.Fred
-        self.commandsDescription = self.textCommandDescriptionStyle + self.Fred + f"\n_________________________________________________________________________________\n{self.w} - start spam process\n{self.return1} - return to main screen\n{self.q} (Keyboard button 'Q') - stop spam process {self.desc1}\n{self.i} - infinity spam\n{self.destroy} - destroy action\n{self.autoclicker} - cursor autoclicker\n{self.z} (Keyboard button 'Z') - stop autoclicker {self.desc2}\n{self.controlled_autoclicker} - an autoclicker that is controlled by keystrokes\n{self.ic} - controlled infinity spam\n_________________________________________________________________________________" + self.Freset
+        self.sms = self.BOLD + "sms_spam" + self.END + self.Fred
+        self.textFile = self.BOLD + "text_file_spam" + self.END + self.Fred
+        self.commandsDescription = self.textCommandDescriptionStyle + self.Fred + f"\n_________________________________________________________________________________\n{self.w} - start spam process\n{self.return1} - return to main screen\n{self.i} - infinity spam\n{self.destroy} - destroy action\n{self.autoclicker} - cursor autoclicker\n{self.controlled_autoclicker} - an autoclicker that is controlled by keystrokes\n{self.ic} - controlled infinity spam\n{self.sms} - sms spam from phone number\n{self.textFile} - spam a text file content\n_________________________________________________________________________________" + self.Freset
         print(self.commandsDescription)
         print("")
 
@@ -94,6 +96,7 @@ class MyApp():
                 self.messageCommandField = input(self.MessageCommandTextStyle)
                 if self.messageCommandField == "destroy":
                     self.destroy_action()
+                    return
                 print(self.Fred + "Nice! please, enter me count of messages." + self.Freset)
                 self.enterAmountText = "Enter count of spam messages> "
                 self.AmountCommandStyle = fontstyle.apply(self.enterAmountText, "bold/red")
@@ -127,11 +130,13 @@ class MyApp():
         elif self.commandField == "i":
             try:
                 print(self.Fred + "Ok, please, enter me message for spam." + self.Freset)
+                print(f"|{self.q} (Keyboard button 'Q') - stop spam process|")
                 self.MessageCommandText = "Enter spam message> "
                 self.MessageCommandTextStyle = fontstyle.apply(self.MessageCommandText, "bold/red")
                 self.messageCommandField = input(self.MessageCommandTextStyle)
                 if self.messageCommandField == "destroy":
                     self.destroy_action()
+                    return
                 print(self.Fyellow + "WARNING: Be careful! This is a infinity spam! Spam will be started after: " + self.Freset)
                 self.timing = 0
                 if len(self.messageCommandField) == 0:
@@ -156,6 +161,7 @@ class MyApp():
         elif self.commandField == "autoclicker":
             try:
                 print(self.Fred + "Ok, autoclicker activated." + self.Freset)
+                print(f"|{self.z} (Keyboard button 'Z') - stop autoclicker|")
                 self.screenData = pyautogui.size()
                 self.cursorData = pyautogui.position()
                 print(self.Fred + "Screen size: " + self.Freset)
@@ -168,6 +174,7 @@ class MyApp():
                 self.AnswerField = input(self.ClickerCommandTextStyle)
                 if self.AnswerField == "destroy":
                     self.destroy_action()
+                    return
                 if len(self.AnswerField) == 0:
                     print(self.Fred + "Why didn't you say anything?)" + self.Freset)
                 if self.AnswerField == "yes":
@@ -194,6 +201,7 @@ class MyApp():
                 print(self.Bred + self.Fwhite + "Operation failed! Please, try again." + self.Freset + self.Breset + self.commandField)
         elif self.commandField == "controlled_autoclicker":
             try:
+                print(self.Fred + "Ok, controlled autoclicker activated.")
                 print(self.Fyellow + "WARNING! action was created, process started." + self.Freset)
                 print(self.Fred + "Keyboard buttons:\n o - start autoclicker\n p - stop autoclicker\n b - exit" + self.Freset)
                 while True:
@@ -208,11 +216,13 @@ class MyApp():
                 print(self.Bred + self.Fwhite + "Operation failed! Please, try again." + self.Freset + self.Breset + self.commandField)
         elif self.commandField == "ic":
             try:
+                print(self.Fred + "Ok, infinity spam activated." + self.Freset)
                 self.ISpamCommandText = "Enter spam message> "
                 self.ISpamCommandTextStyle = fontstyle.apply(self.ISpamCommandText, "bold/red")
                 self.ISpamField = input(self.ISpamCommandTextStyle)
                 if self.ISpamField == "destroy":
                     self.destroy_action()
+                    return
                 if len(self.ISpamField) == 0:
                     self.ISpamField = "I am a Spam Monster)"
                 print(self.Fyellow + "WARNING! action was created, process started." + self.Freset)
@@ -230,6 +240,76 @@ class MyApp():
                         break
             except:
                 print(self.Bred + self.Fwhite + "Operation failed! Please, try again." + self.Freset + self.Breset + self.commandField)
+        elif self.commandField == "sms_spam":
+            print("nothing. coming soon!")
+        elif self.commandField == "text_file_spam":
+            try:
+                print(self.Fred + "Ok, text file content spam activated." + self.Freset)
+                self.TFspamCommandText = "Enter text file path> "
+                self.TFspamCommandTextStyle = fontstyle.apply(self.TFspamCommandText, "bold/red")
+                self.TFspamFieldFile_path = input(self.TFspamCommandTextStyle)
+                if os.path.exists(self.TFspamFieldFile_path):
+                    with open(self.TFspamFieldFile_path, "r") as file:
+                        self.content = file.read()
+                    self.allText = self.content
+                    print(self.Fgreen + "File was read, text extracted." + self.Freset)
+                    time.sleep(1)
+                    print(self.Fblue + "Please, select spam mode:" + self.Freset)
+                    print(self.Fmagenta + "1 - spam a certain amount of times\n2 - infinity spam" + self.Freset)
+                    self.selectMode = "Enter mode> "
+                    self.selectModeStyle = fontstyle.apply(self.selectMode, "bold/red")
+                    self.selectModeField = input(self.selectModeStyle)
+                    if self.selectModeField == "destroy":
+                        self.destroy_action()
+                        return
+                    if self.selectModeField == "1":
+                        self.countText = "Enter count of spam messages> "
+                        self.countTextStyle = fontstyle.apply(self.countText, "bold/red")
+                        self.countText = int(input(self.countTextStyle))
+                        if self.countText == "destroy":
+                            self.destroy_action()
+                            return
+                        pyautogui.click(x=100, y=100)
+                        pyautogui.mouseUp()
+                        for a in range(self.countText):
+                            pass
+                        print(self.Fyellow + "WARNING: spam will be started after: " + self.Freset)
+                        self.timeCount = 10
+                        self.timer = 0
+                        for x in range(10, 0, -1):
+                            time.sleep(1)
+                            self.timer += 1
+                            print(self.Fyellow + f"{x} seconds" + self.Freset)
+                            if x == 0:
+                                print(self.Fred + "Spam process started!" + self.Freset)
+                        if self.timer == 10:
+                            print(self.Fred + f"Spam process was started. Messages count: {self.countText}" + self.Freset)
+                            while self.countText > 0:
+                                self.countText -= 1
+                                pyautogui.typewrite(self.allText.strip())
+                                pyautogui.press("enter")
+                            print(self.Fred + "Spam process was ended." + self.Freset)
+                        
+                    elif self.selectModeField == "2":
+                        print(self.Fyellow + "WARNING! action was created, process started." + self.Freset)
+                        print(self.Fred + "Keyboard buttons:\n j - start spam\n k - stop spam\n n - exit" + self.Freset)
+                        pyautogui.click(x=100, y=100)
+                        pyautogui.mouseUp()
+                        while True:
+                            if keyboard.is_pressed("j"):
+                                while True:
+                                    pyautogui.typewrite(self.allText)
+                                    pyautogui.press("enter")
+                                    if keyboard.is_pressed("k"):
+                                        break
+                            if keyboard.is_pressed("n"):
+                                break
+                    else:
+                        print(self.Bred + self.Fwhite + "This mode not found!" + self.Freset + self.Breset)
+                else:
+                    print(self.Bred + self.Fwhite + "File not found or the path is incorrect! Please, try again." + self.Freset + self.Breset)
+            except Exception as e:
+                print(self.Bred + self.Fwhite + "Operation failed! Please, try again." + self.Freset + self.Breset + self.commandField + e)
         else:
             print(self.Bred + self.Fwhite + "Unknown command -> " + self.Freset + self.Breset + self.commandField)
 if __name__ == "__main__":
