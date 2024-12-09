@@ -11,15 +11,11 @@ A console application for spam.
 <br>
 <b>return</b> - return to main screen
 <br>
-<b>q (keybord button)</b> - stop spam (applicable to command 'i')
-<br>
 <b>i</b> - infinity spam
 <br>
 <b>destroy</b> - destroy selected action
 <br>
 <b>autoclicker</b> - cursor autoclicker
-<br>
-<b>z (keyboard button)</b> - stop autoclicker (applicable to command 'autoclicker')
 <br>
 <b>controlled_autoclicker</b> - an autoclicker that is controlled by keystrokes
 <br>
