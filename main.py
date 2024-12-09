@@ -5,7 +5,7 @@ import pyfiglet
 import fontstyle
 import time
 import keyboard
-import threading
+import random
 import os
 
 class MyApp():
@@ -42,6 +42,14 @@ class MyApp():
         self.MainText = "SPAM MONSTER"
         self.mainTextLogo = pyfiglet.figlet_format(text=self.MainText, font="slant")
         print(self.Fred + self.mainTextLogo + self.Freset)
+        self.rndColors = [self.Fred, self.Fgreen, self.Fcyan, self.Fblue, self.Fblack, self.Fmagenta, self.Fyellow, self.Fwhite]
+        self.rndColor = random.choice(self.rndColors)
+        self.byName = self.rndColor + "Maxdgf" + self.Freset + self.Fred
+        self.byDescriptionPattern = f"by {self.byName} github: https://github.com/Maxdgf"
+        self.byDescription = fontstyle.apply(self.byDescriptionPattern, 'bold/red')
+        print(f"\x1B[3m{self.byDescription : ^100}\x1B[0m")
+        self.linePattern = "____________________________________"
+        print(self.Fred + f"{self.linePattern : ^67}" + self.Freset)
         self.textDescriptionPattern = "--------[{SPAM ATACK PROGRAM}]--------"
         self.textDescription = fontstyle.apply(self.textDescriptionPattern, 'bold/red')
         print(f"{self.textDescription : ^80}")
@@ -64,7 +72,7 @@ class MyApp():
         self.z = self.Fred + self.BOLD + "Z" + self.END + self.Fred
         self.controlled_autoclicker = self.BOLD + "controlled_autoclicker" + self.END + self.Fred
         self.ic = self.BOLD + "ic" + self.END + self.Fred
-        self.sms = self.BOLD + "sms_spam" + self.END + self.Fred
+        self.sms = self.BOLD + "sms_spam (!coming soon!)" + self.END + self.Fred
         self.textFile = self.BOLD + "text_file_spam" + self.END + self.Fred
         self.commandsDescription = self.textCommandDescriptionStyle + self.Fred + f"\n_________________________________________________________________________________\n{self.w} - start spam process\n{self.return1} - return to main screen\n{self.i} - infinity spam\n{self.destroy} - destroy action\n{self.autoclicker} - cursor autoclicker\n{self.controlled_autoclicker} - an autoclicker that is controlled by keystrokes\n{self.ic} - controlled infinity spam\n{self.sms} - sms spam from phone number\n{self.textFile} - spam a text file content\n_________________________________________________________________________________" + self.Freset
         print(self.commandsDescription)
@@ -107,6 +115,7 @@ class MyApp():
                 pyautogui.mouseUp()
                 for a in range(self.amount):
                     pass
+                print(self.Fyellow + "move cursor to input string!" + self.Freset)
                 print(self.Fyellow + "WARNING: spam will be started after: " + self.Freset)
                 self.timeCount = 10
                 self.timer = 0
@@ -137,6 +146,7 @@ class MyApp():
                 if self.messageCommandField == "destroy":
                     self.destroy_action()
                     return
+                print(self.Fyellow + "move cursor to input string!" + self.Freset)
                 print(self.Fyellow + "WARNING: Be careful! This is a infinity spam! Spam will be started after: " + self.Freset)
                 self.timing = 0
                 if len(self.messageCommandField) == 0:
@@ -178,6 +188,7 @@ class MyApp():
                 if len(self.AnswerField) == 0:
                     print(self.Fred + "Why didn't you say anything?)" + self.Freset)
                 if self.AnswerField == "yes":
+                    print(self.Fyellow + "move cursor to target area!" + self.Freset)
                     print(self.Fyellow + "WARNING: cursor autoclicker was activated!" + self.Freset)
                     print(self.Fyellow + "Time to prepare!" + self.Freset)
                     self.timerData = 0
@@ -202,6 +213,7 @@ class MyApp():
         elif self.commandField == "controlled_autoclicker":
             try:
                 print(self.Fred + "Ok, controlled autoclicker activated.")
+                print(self.Fyellow + "move cursor to target area!" + self.Freset)
                 print(self.Fyellow + "WARNING! action was created, process started." + self.Freset)
                 print(self.Fred + "Keyboard buttons:\n o - start autoclicker\n p - stop autoclicker\n b - exit" + self.Freset)
                 while True:
@@ -225,6 +237,7 @@ class MyApp():
                     return
                 if len(self.ISpamField) == 0:
                     self.ISpamField = "I am a Spam Monster)"
+                print(self.Fyellow + "move cursor to input string!" + self.Freset)
                 print(self.Fyellow + "WARNING! action was created, process started." + self.Freset)
                 print(self.Fred + "Keyboard buttons:\n j - start spam\n k - stop spam\n n - exit" + self.Freset)
                 pyautogui.click(x=100, y=100)
@@ -273,6 +286,7 @@ class MyApp():
                         pyautogui.mouseUp()
                         for a in range(self.countText):
                             pass
+                        print(self.Fyellow + "move cursor to input string!" + self.Freset)
                         print(self.Fyellow + "WARNING: spam will be started after: " + self.Freset)
                         self.timeCount = 10
                         self.timer = 0
