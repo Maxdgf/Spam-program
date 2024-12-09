@@ -24,6 +24,8 @@ A console application for spam.
 <b>controlled_autoclicker</b> - an autoclicker that is controlled by keystrokes
 <br>
 <b>ic</b> - controlled infinity spam
+<br>
+<b>text_file_spam</b> - spam a text file content
 
 <h1>Requirements:</h1>
 
