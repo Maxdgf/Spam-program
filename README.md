@@ -28,16 +28,4 @@ A console application for spam.
 <h1>Requirements:</h1>
 
 ##
-    pip install pyfiglet
-
-##
-    pip install pyautogui
-
-##
-    pip install colorama
-
-##
-    pip install keyboard
-
-##
-    pip install fontstyle
+    pip install -r requieremnts.txt
